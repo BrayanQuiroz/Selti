@@ -21,28 +21,44 @@ const index = (props) => {
       <Container>
          <Row padding='2rem'>
             <RowContainer>
-               <SelectCustom
-                  label="Tipo de documento*"
-                  options={options}
-                  value={selectedOption}
-                  onChange={handleSelectChange} />
+            <RowFlex>   
+               <InputsText     
+                  width="78%"              
+                  label="RUC:*"
+                  type="text"
+                  placeholder="Ingrese número de documento"
+                  options={options} /> 
+               <Button
+                  isRounded={true}
+                  isMarginTop={true}
+                  text="Buscar" />
+               </RowFlex> 
                <RowFlex>
                   <InputsText                   
-                     label="Número de documento:*"
+                     label="Razón social:*"
                      type="text"
-                     placeholder="Ingrese número de documento"
-                     options={options} />      
-                  <Button
-                     isRounded={true}
-                     isMarginTop={true}
-                     text="Buscar"/>
-               </RowFlex>     
+                     options={options}/>      
+               </RowFlex>
             </RowContainer>
             <RowContainer> 
+              
+
                <InputsText        
+                  width="90%"
+                  label="Personal natural:*"
+                  type="text"
+                     options={options} />
+               <InputsText        
+                  width="90%"
+                  label="Personal natural:*"
+                  type="text"
+                     options={options} />
+               <InputsText       
+                   width="90%"   
                   label="Personal natural:*"
                   type="text"
                   options={options} />
+                
             </RowContainer>
             <RowContainer>
                <p>*Campo de llenado obligatorio</p>

@@ -6,7 +6,7 @@ const StyledButton = styled.button`
   padding: 8px 20px;
   margin-top: ${({ isMarginTop }) => isMarginTop ? "27px" : "0px"};
   height: 38px;
-  background-color: ${({ bgColor }) => bgColor || "#DC2626"};
+  background-color: #DC2626;
   color: #fff;
   border: none;
   border-radius: ${({ isRounded }) => isRounded ? "0 5px 5px 0" : "5px"};
@@ -15,8 +15,7 @@ const StyledButton = styled.button`
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    background-color: ${({ bgColor }) =>
-      bgColor ? rgba(bgColor, 0.9) : rgba("#DC2626", 0.9)};
+    background-color: rgba("#DC2626", 0.9);
   }
 
   &:focus {
@@ -30,16 +29,10 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ text, onClick, bgColor, disabled, isRounded,isMarginTop }) => {
+const Button = ({ text, ...props }) => {
   return (
     <StyledButton
-      onClick={onClick}
-      bgColor={bgColor}
-      disabled={disabled}
-      isRounded={isRounded}
-      isMarginTop={isMarginTop }
-    >
-        
+      {...props} >        
       {text}
     </StyledButton>
   );
