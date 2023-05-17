@@ -33,7 +33,7 @@ const Label = styled.label`
 `;
 
 const InputWrapper = styled.div`
-  width: ${props => props.width || '100vh'}; 
+  width: ${props => props.width || '100%'}; 
 `;
 
 const InputCustom = ({ label,...props }) => (

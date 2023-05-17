@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const SelectWrapper = styled.div`
   width: ${props => props.width || '47%'};
+  margin-right: 1rem;
 `;
 
 const Select = styled.select`
@@ -36,8 +37,8 @@ const Label = styled.label`
   margin-bottom: 0.5rem;
 `;
 
-const InputCustom = ({ label, options, value, onChange }) => (
-  <SelectWrapper>
+const InputCustom = ({ label, options, value, onChange,width }) => (
+  <SelectWrapper width={width} >
     <Label>{label}</Label>
     <Select value={value} onChange={onChange}>
       {options.map(option => (

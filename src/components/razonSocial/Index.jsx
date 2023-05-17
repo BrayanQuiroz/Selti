@@ -22,43 +22,66 @@ const index = (props) => {
          <Row padding='2rem'>
             <RowContainer>
             <RowFlex>   
-               <InputsText     
-                  width="78%"              
-                  label="RUC:*"
-                  type="text"
+               <InputsText label="RUC:*" type="text"
                   placeholder="Ingrese número de documento"
                   options={options} /> 
-               <Button
-                  isRounded={true}
-                  isMarginTop={true}
-                  text="Buscar" />
+               <Button isRounded={true} isMarginTop={true}
+                       text="Buscar" />
                </RowFlex> 
                <RowFlex>
-                  <InputsText                   
-                     label="Razón social:*"
-                     type="text"
+                  <InputsText label="Razón social:*" type="text"
                      options={options}/>      
                </RowFlex>
             </RowContainer>
             <RowContainer> 
-              
-
-               <InputsText        
-                  width="90%"
-                  label="Personal natural:*"
-                  type="text"
-                     options={options} />
-               <InputsText        
-                  width="90%"
-                  label="Personal natural:*"
-                  type="text"
-                     options={options} />
+               <InputsText width="95%" label="Personal natural:*"type="text"
+                  options={options} />
+               
+               <InputsText width="95%"label="Personal natural:*"
+                           type="text"
+                           options={options} />
+               
+               <InputsText width="95%"label="Personal natural:*"
+                           type="text"
+                           options={options} />
+                        
+            </RowContainer>
+            <RowContainer>
+               <SelectCustom
+                  width="95%"
+                  label="Codigo de departamento*"
+                  options={options}
+                  value={selectedOption}
+                  onChange={handleSelectChange} />
                <InputsText       
-                   width="90%"   
-                  label="Personal natural:*"
+                  width="95%"   
+                  label="Telefono:*"
                   type="text"
                   options={options} />
-                
+               <InputsText       
+                   width="95%"   
+                  label="Celular:*"
+                  type="text"
+                  options={options} />
+            </RowContainer>
+            <RowContainer>
+               <InputsText       
+                     width="100%"   
+                     label="Dirección exacta:*"
+                     type="text"
+                     options={options} />
+            </RowContainer>
+            <RowContainer>
+            <InputsText       
+                  width="95%"   
+                  label="Correo electronico:*"
+                  type="text"
+                  options={options} />
+               <InputsText       
+                  width="95%"   
+                  label="Pagina web:*"
+                  type="text"
+                  options={options} />
             </RowContainer>
             <RowContainer>
                <p>*Campo de llenado obligatorio</p>
