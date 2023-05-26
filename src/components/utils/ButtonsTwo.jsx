@@ -1,18 +1,28 @@
 import styled from "styled-components"
 
+
 const StyledButtonTwo = styled.button`
    background-color: white;
-   border: red 1px solid;
-   /* width: 10%; */
-   border-radius:20px;
-   color:blue;
+   border: ${({ isColor })  => (isColor ? "#0d6efd":"#DC2626" )} 1px solid;
+   padding: 0rem 1.5rem;
+   border-radius:10px;
+   font-weight: 600;
+   color:${({ isColor })  => (isColor ? "#0d6efd":"#DC2626" )};
+   cursor: pointer;
+   height: 3rem;
+   transition: background-color 0.5s ease, color 0.5s ease;
+
+   &:hover {
+      background-color:${({ isColor })  => (isColor ? "#0d6efd":"#DC2626" )};
+      color:white;
+  }
 `;
 
-const ButtonTwo = ({ text, props }) => {
+const ButtonTwo = ({ text,isColor }) => {
    return(
    <StyledButtonTwo
-      {...props}>
-      {text}
+   isColor={isColor}>
+         { text}
    </StyledButtonTwo>)
 
 }

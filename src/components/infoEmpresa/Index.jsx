@@ -13,7 +13,10 @@ const  Index= (props)=> {
                </div>
             </RowContainer>
             <RowContainer>
-               <ButtonTwo text="Agregar persona" />
+               <ButtonTwo isColor={true}
+                  text="Agregar persona" />
+                              <ButtonTwo isColor={false}
+                  text="Eliminar persona" />
             </RowContainer>
 
          </Row>
