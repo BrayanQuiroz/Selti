@@ -46,6 +46,9 @@ const index = (props) => {
                   options={options} />
             </RowContainer>
             <RowContainer>
+               
+            </RowContainer>
+            <RowContainer>
                <p>*Campo de llenado obligatorio</p>
                <Button               
                      text="Siguiente"/>

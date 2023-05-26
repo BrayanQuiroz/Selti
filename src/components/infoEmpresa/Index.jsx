@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, RowFlex,RowContainer } from '../utils/Container';
+import ButtonTwo from '../utils/ButtonsTwo';
 
 const  Index= (props)=> {
    return (
@@ -12,7 +13,7 @@ const  Index= (props)=> {
                </div>
             </RowContainer>
             <RowContainer>
-               
+               <ButtonTwo text="Agregar persona" />
             </RowContainer>
 
          </Row>
