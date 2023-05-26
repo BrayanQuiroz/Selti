@@ -35,4 +35,14 @@ export const RowContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 2rem 0 2rem 0;
+
+  & div p:first-of-type{
+    color:red;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  & div p:nth-of-type(2){
+
+  }
 `;

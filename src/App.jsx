@@ -3,6 +3,7 @@ import Footer from './components/utils/Footer'
 import Step from './components/presentanteLegal/Index'
 import NavBar from './components/utils/NavBar'
 import StepTwo from './components/razonSocial/Index'
+import StepThree from './components/infoEmpresa/Index'
 
 function App() {
 
@@ -10,7 +11,7 @@ function App() {
     <>
       <Header />
       <NavBar/>
-      <StepTwo />
+      <StepThree />
       <Footer/>
     </>
   )
