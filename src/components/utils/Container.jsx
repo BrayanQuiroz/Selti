@@ -10,17 +10,23 @@ export  const Container = styled.div`
 
 export const Row = styled.div`
   width: 100%;
+  
   padding: ${props => props.padding || '0rem'}; 
   background-color: white;
   & .RowTwo{
     width: 100%;
     height: 63px;
   }
+
+  & .RowThree{
+    width: 100%;
+    height: calc(100vh - 158.8px);
+  }
 `;
 
 export const RowFlex = styled.div`
   display: flex;
-  width: 47%;
+  width: ${props => props.width || '47%;'};
   height: 63px;
   & p{
       background-color:red;

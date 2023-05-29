@@ -38,13 +38,13 @@ const InputWrapper = styled.div`
 
 const InputCustom = ({ label,...props }) => (
    <InputWrapper>
-     <Label>{label}</Label>
-    <Inputs {...props} />
+      <Label>{label}</Label>
+      <Inputs {...props} />
    </InputWrapper>
  );
  
  InputCustom.propTypes = {
-   label: PropTypes.string.isRequired,
+  //  label: PropTypes.string.isRequired,
    width: PropTypes.string,
  };
  

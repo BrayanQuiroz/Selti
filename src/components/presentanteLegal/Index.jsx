@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import InputsText from '../utils/Inputs';
 import { Container, Row, RowFlex,RowContainer } from '../utils/Container';
-import SelectCustom from '../utils/Selects';
 import Button from '../utils/Buttons';
+import SelectCustom from '../utils/Selects';
+
 
 const index = (props) => {
    
@@ -16,7 +17,6 @@ const index = (props) => {
       { value: '06', label: 'CARNET DE EXTRANJERÍA' },
       { value: '26', label: 'CARNET DE PERMISO TEMPORAL DE PERMANENCIA' },
     ];
-    console.log(selectedOption);
    return (
       <Container>
          <Row padding='2rem'>
