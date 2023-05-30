@@ -42,6 +42,12 @@ export const RowContainer = styled.div`
   justify-content: space-between;
   margin: 2rem 0 2rem 0;
 
+  & .flex{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+  }
+
   & div p:first-of-type{
     color:red;
     font-weight: 600;

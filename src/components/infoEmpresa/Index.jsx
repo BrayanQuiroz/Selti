@@ -8,12 +8,13 @@ import SelectCustom from '../utils/Selects';
 import Button from '../utils/Buttons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import CheckboxTwo from '../utils/CheckboxTwo'; 
+  
 const Index = () => {
 
-   const [modalIsOpen, setModalIsOpen] = useState(false);
-   const [selectedOption, setSelectedOption] = useState('');
-   const [selectedRows, setSelectedRows] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedRows, setSelectedRows] = useState([]);
    
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
@@ -38,7 +39,7 @@ const Index = () => {
 
   const [rows, setRows] = useState([]);
   const [newRow, setNewRow] = useState({
-   name:'',
+    name: '',
     firstName: '',
     lastName: '',
     middleName: '',
@@ -50,7 +51,7 @@ const Index = () => {
 
   const [rows2, setRows2] = useState([]);
   const [newRow2, setNewRow2] = useState({
-    Departamento:'',
+    Departamento: '',
     Provincia: '',
     Distrito: '',
     Porducto: '',
@@ -68,11 +69,11 @@ const Index = () => {
   };
 
   const handleCheckboxChange = (index) => {
-   if (selectedRows.includes(index)) {
-     setSelectedRows(selectedRows.filter((rowIndex) => rowIndex !== index));
-   } else {
-     setSelectedRows([...selectedRows, index]);
-   }
+    if (selectedRows.includes(index)) {
+      setSelectedRows(selectedRows.filter((rowIndex) => rowIndex !== index));
+    } else {
+      setSelectedRows([...selectedRows, index]);
+    }
   };
 
   const handleCheckboxChange2 = (index) => {
@@ -81,12 +82,12 @@ const Index = () => {
     } else {
       setSelectedRows([...selectedRows, index]);
     }
-   };
+  };
    
   const handleDeleteClick = () => {
-   const remainingRows = rows.filter((_, index) => !selectedRows.includes(index));
-   setRows(remainingRows);
-   setSelectedRows([]);
+    const remainingRows = rows.filter((_, index) => !selectedRows.includes(index));
+    setRows(remainingRows);
+    setSelectedRows([]);
   };
   
   const handleDeleteClick2 = () => {
@@ -98,7 +99,7 @@ const Index = () => {
  
 
   const handleAddClick = () => {
-     if (
+    if (
       newRow.name.trim() !== '' &&
       newRow.firstName.trim() !== '' &&
       newRow.lastName.trim() !== '' &&
@@ -110,7 +111,7 @@ const Index = () => {
       setRows([...rows, newRow]);
       setNewRow({
 
-         name:'',
+        name: '',
         firstName: '',
         lastName: '',
         middleName: '',
@@ -126,35 +127,35 @@ const Index = () => {
 
   const handleAddClick2 = () => {
     if (
-     newRow2.Departamento.trim() !== '' &&
-     newRow2.Provincia.trim() !== '' &&
-     newRow2.Distrito.trim() !== '' &&
-     newRow2.Porducto.trim() !== '' &&
-     newRow2.Hectareas.trim() !== ''
-   ) {
-     setRows2([...rows2, newRow2]);
-     setNewRow2({
+      newRow2.Departamento.trim() !== '' &&
+      newRow2.Provincia.trim() !== '' &&
+      newRow2.Distrito.trim() !== '' &&
+      newRow2.Porducto.trim() !== '' &&
+      newRow2.Hectareas.trim() !== ''
+    ) {
+      setRows2([...rows2, newRow2]);
+      setNewRow2({
 
-      name:'',
-       firstName: '',
-       lastName: '',
-       middleName: '',
-       documentType: '',
-       position: '',
-       email: '',
-       phone: '',
-     });
-   } else {
-     toast.error('Por favor, complete todos los campos obligatorios.');
-   }
- };
+        name: '',
+        firstName: '',
+        lastName: '',
+        middleName: '',
+        documentType: '',
+        position: '',
+        email: '',
+        phone: '',
+      });
+    } else {
+      toast.error('Por favor, complete todos los campos obligatorios.');
+    }
+  };
    
 
-  const headers = ['','Nombres', 'Apellido Paterno', 'Apellido Materno', 'Nro. de Doc.', 'Cargo', 'Email', 'Celular'];
+  const headers = ['', 'Nombres', 'Apellido Paterno', 'Apellido Materno', 'Nro. de Doc.', 'Cargo', 'Email', 'Celular'];
 
   const data2 = [
-     [
-       '',
+    [
+      '',
       <Input name="name" value={newRow.name} onChange={handleInputChange} required />,
       <Input name="firstName" value={newRow.firstName} onChange={handleInputChange} required />,
       <Input name="lastName" value={newRow.lastName} onChange={handleInputChange} required />,
@@ -185,7 +186,7 @@ const Index = () => {
     ]);
   }
 
-  const headers2 = ['','Nombres', 'Apellido Paterno', 'Apellido Materno', 'Nro. de Doc.', 'Cargo', 'Email', 'Celular'];
+  const headers2 = ['', 'Departmento', 'Provincia', 'Distrito', 'Producto', 'Hectareas']
 
   const data3 = [
      [
@@ -225,82 +226,83 @@ const Index = () => {
   return (
     <Container>
       <Row padding="2rem">
-      <div className='RowThree'> 
-        <RowContainer>
-          <div>
-            <p>REPRESENTANTE(S) LEGAL(ES)</p>
-            <p>(Ingresar un máximo de 3 presentantes)</p>
-          </div>
-        </RowContainer>
-        <RowContainer>
-          <div>
-            <ButtonTwo isColor={true} onClick={openModal} text="Agregar persona" />
-            <ButtonTwo isColor={false} onClick={handleDeleteClick} text="Eliminar persona" />
-          </div>
-          <Modal isOpen={modalIsOpen} closeModal={closeModal}>
-            <RowFlex width="80%">
-              <SelectCustom
-                label="Tipo de documento*"
-                options={options}
-                value={selectedOption}
-                onChange={handleSelectChange}
-                width="100%"
-              />
-              <Input label="Ingrese Documento" />
-              <Button isRounded={true} isMarginTop={true} text="Buscar" />
-            </RowFlex>
-            <Row>
-              <Tables headers={headers} data={data2} />
-              <ButtonTwo isColor={true} onClick={handleAddClick} text="Guardar" />
-              <ToastContainer position="top-center" autoClose={1000} />
-            </Row>
-          </Modal>
-        </RowContainer>
-        <div>
-          <Tables headers={headers} data={data} />
-        </div>
-      
-      <div>
+        <div className='RowThree'> 
           <RowContainer>
-            {/* <div className='RowThree'> */}
-
-          <div>
-            <p>REPRESENTANTE(S) LEGAL(ES)</p>
-            <p>(Ingresar un máximo de 3 presentantes)</p>
-          </div>
-        </RowContainer>
-        <RowContainer>
-          <div>
-            <ButtonTwo isColor={true} onClick={openModal} text="Agregar persona" />
-            <ButtonTwo isColor={false} onClick={handleDeleteClick} text="Eliminar persona" />
-          </div>
-          <Modal isOpen={modalIsOpen} closeModal={closeModal}>
-            <RowFlex width="80%">
-              <SelectCustom
-                label="Tipo de documento*"
-                options={options}
-                value={selectedOption}
-                onChange={handleSelectChange}
-                width="100%"
+            <div>
+              <p>REPRESENTANTE(S) LEGAL(ES)</p>
+              <p>(Ingresar un máximo de 3 presentantes)</p>
+            </div>
+          </RowContainer>
+          <RowContainer>
+            <div>
+              <ButtonTwo isColor={true} onClick={openModal} text="Agregar persona" />
+              <ButtonTwo isColor={false} onClick={handleDeleteClick} text="Eliminar persona" />
+            </div>
+            <Modal isOpen={modalIsOpen} closeModal={closeModal}>
+              <RowFlex width="80%">
+                <SelectCustom
+                  label="Tipo de documento*"
+                  options={options}
+                  value={selectedOption}
+                  onChange={handleSelectChange}
+                  width="100%"
                 />
-              <Input label="Ingrese Documento" />
-              <Button isRounded={true} isMarginTop={true} text="Buscar" />
-            </RowFlex>
-            <Row>
-              <Tables headers={headers} data={data3} />
-              <ButtonTwo isColor={true} onClick={handleAddClick2} text="Guardar" />
-              <ToastContainer position="top-center" autoClose={1000} />
-            </Row>
-          </Modal>
-        </RowContainer>
-                {/* </div> */}
-        <div>
-          <Tables headers={headers2} data={datas2} />
-        </div>
+                <Input label="Ingrese Documento" />
+                <Button isRounded={true} isMarginTop={true} text="Buscar" />
+              </RowFlex>
+              <Row>
+                <Tables headers={headers} data={data2} />
+                <ButtonTwo isColor={true} onClick={handleAddClick} text="Guardar" />
+                <ToastContainer position="top-center" autoClose={1000} />
+              </Row>
+            </Modal>
+          </RowContainer>
+          <div>
+            <Tables headers={headers} data={data} />
           </div>
-          </div> 
-        </Row>
-    </Container>
+        
+          <div>
+            <RowContainer>
+              <div>
+                <p>REPRESENTANTE(S) LEGAL(ES)</p>
+                <p>(Ingresar un máximo de 3 presentantes)</p>
+              </div>
+          </RowContainer>
+          <RowContainer>
+            <div>
+              <ButtonTwo isColor={true} onClick={openModal} text="Agregar persona" />
+              <ButtonTwo isColor={false} onClick={handleDeleteClick} text="Eliminar persona" />
+            </div>
+            <Modal isOpen={modalIsOpen} closeModal={closeModal}>
+              <RowFlex width="80%">
+                <SelectCustom
+                  label="Tipo de documento*"
+                  options={options}
+                  value={selectedOption}
+                  onChange={handleSelectChange}
+                  width="100%"
+                  />
+                <Input label="Ingrese Documento" />
+                <Button isRounded={true} isMarginTop={true} text="Buscar" />
+              </RowFlex>
+              <Row>
+                <Tables headers={headers} data={data3} />
+                <ButtonTwo isColor={true} onClick={handleAddClick2} text="Guardar" />
+                <ToastContainer position="top-center" autoClose={1000} />
+              </Row>
+            </Modal>
+          </RowContainer>
+            <div>
+              <Tables headers={headers2} data={datas2} />
+            </div>
+            <div>
+              <CheckboxTwo text='Manifiesto mi conformidad a recibir por correo electrónico toda comunicación por parte del Ministerio de TRabajo y Promoción del Empleo, realativa al desarrollo del proceso de reconocimiento "Sello LIbre de Trabajo Infantil". *'/>
+              <CheckboxTwo text='Declaro bajo juramento que la información que suministrada para que mi represeantado postule al Reconocimiento "Sello Libre de Trabajo Infantil" a cargo del Ministerio de Trabajo y Promoción del Empleo de Perú, es veraz, fidedigna, completa y exacta. *'/>
+            </div>
+          </div>
+      </div> 
+    </Row>
+  </Container>
   );
 };
 

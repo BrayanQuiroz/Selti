@@ -4,6 +4,7 @@ import Step from './components/presentanteLegal/Index'
 import NavBar from './components/utils/NavBar'
 import StepTwo from './components/razonSocial/Index'
 import StepThree from './components/infoEmpresa/Index'
+import StepFour from './components/finalizado/Index'
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
     <>
       <Header />
       <NavBar/>
-      <StepThree />
+      <StepFour />
       <Footer/>
     </>
   )
