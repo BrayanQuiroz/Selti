@@ -11,7 +11,8 @@ function App() {
   return (
     <>
       <Header />
-      <NavBar/>
+      <NavBar />
+      {/* <StepThree /> */}
       <StepFour />
       <Footer/>
     </>

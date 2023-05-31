@@ -6,6 +6,7 @@ export  const Container = styled.div`
   margin-right: auto;
   padding-left: 1.5rem; 
   padding-right: 1.5rem;
+  margin-bottom: ${props => props.marginBottom || ''};
 `;
 
 export const Row = styled.div`
@@ -13,6 +14,7 @@ export const Row = styled.div`
   
   padding: ${props => props.padding || '0rem'}; 
   background-color: white;
+  width: ${props => props.width || '100%'};
   & .RowTwo{
     width: 100%;
     height: 63px;

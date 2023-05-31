@@ -273,7 +273,7 @@ const Index = () => {
               <ButtonTwo isColor={true} onClick={openModal} text="Agregar persona" />
               <ButtonTwo isColor={false} onClick={handleDeleteClick} text="Eliminar persona" />
             </div>
-            <Modal isOpen={modalIsOpen} closeModal={closeModal}>
+            {/* <Modal isOpen={modalIsOpen} closeModal={closeModal}>
               <RowFlex width="80%">
                 <SelectCustom
                   label="Tipo de documento*"
@@ -290,10 +290,10 @@ const Index = () => {
                 <ButtonTwo isColor={true} onClick={handleAddClick2} text="Guardar" />
                 <ToastContainer position="top-center" autoClose={1000} />
               </Row>
-            </Modal>
+            </Modal> */}
           </RowContainer>
             <div>
-              <Tables headers={headers2} data={datas2} />
+              {/* <Tables headers={headers2} data={datas2} /> */}
             </div>
             <div>
               <CheckboxTwo text='Manifiesto mi conformidad a recibir por correo electrónico toda comunicación por parte del Ministerio de TRabajo y Promoción del Empleo, realativa al desarrollo del proceso de reconocimiento "Sello LIbre de Trabajo Infantil". *'/>

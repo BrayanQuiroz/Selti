@@ -3,6 +3,9 @@ import { Container, Row, RowFlex, RowContainer } from '../utils/Container';
 import InputCustom from '../utils/InputsTwo';
 import Tables from '../utils/Tables';
 import Input from '../utils/Inputs';
+import CheckboxTwo from '../utils/CheckboxTwo'; 
+import Button from '../utils/Buttons';
+import { Text }  from '../utils/Text';
 
 const Index = (props) => {
 
@@ -10,16 +13,18 @@ const Index = (props) => {
 
     };
 
-   const rows = [
+   const rows =[
       {
-         'Departamento': 'Huanuco',
-         'Provincia': 'Huanuco',
-         'Distrito': 'pap',
-         'Hectareas': '20'
-      },
+         Departamento: 'Huanuco',
+         Provincia: 'Lima',
+         Distrito: 'Jesus Maria',
+         Producto: 'Cafe',
+         Hectareas: '20',
+      }
    ]
    
-   console.log(rows.nombre)
+
+   console.log(rows.nombre);
 
    const headers = ['Departmento', 'Provincia', 'Distrito', 'Producto', 'Hectareas']
 
@@ -27,11 +32,12 @@ const Index = (props) => {
    let data = [];
 
    if (rows.length > 0) {
-      data = rows.map((row,index) => [
-         [
-            <Input width='30%' name="name" value={row.Departamento} onChange={handleInputChange} disabled/>,
-            <Input width='30%' name="name" value={row.Provincia} onChange={handleInputChange} disabled/>,
-         ],
+      data = rows.map((row) => [         
+         <Input width='50%' name="name" value={row.Departamento} onChange={handleInputChange} disabled/>,
+         <Input width='50%' name="name" value={row.Provincia} onChange={handleInputChange} disabled />,
+         <Input width='50%' name="name" value={row.Distrito} onChange={handleInputChange} disabled />,
+         <Input width='50%' name="name" value={row.Producto} onChange={handleInputChange} disabled />,
+         <Input width='50%' name="name" value={row.Hectareas} onChange={handleInputChange} disabled/>,         
       ]);
    }
    
@@ -57,13 +63,17 @@ const Index = (props) => {
                <InputCustom label='Distrito:'width='100%'/>
             </RowContainer>
             <p>PERSONAS DE CONTACTO / PUNTO(S) FOCAL(ES)</p>
-            
             <Tables headers={headers} data={data} />
-            
+            <div>
+               <CheckboxTwo text={ Text.TextOne} />
+               <CheckboxTwo text={ Text.TextTwo} />
+            </div>
+            <div>
+               <Button text='Descargar formato' />
+            </div>
          </Row>   
       </Container>
    );
 }
 
 export default Index;
-// <Tables headers={headers2} data={datas2} />
