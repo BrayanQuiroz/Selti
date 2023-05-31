@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export  const Container = styled.div`
   max-width: ${props => props.maxWidth || '72rem'}; 
@@ -6,18 +6,21 @@ export  const Container = styled.div`
   margin-right: auto;
   padding-left: 1.5rem; 
   padding-right: 1.5rem;
-  margin-bottom: ${props => props.marginBottom || ''};
 `;
 
-export const Row = styled.div`
-  width: 100%;
-  
+export const Row = styled.div`  
   padding: ${props => props.padding || '0rem'}; 
   background-color: white;
-  width: ${props => props.width || '100%'};
+  /* width: ${props => props.width || '100%'}; */
+  height: calc(100% - 158.8px);
   & .RowTwo{
     width: 100%;
     height: 63px;
+  }
+
+  & .rows{
+    display: flex;
+    padding-top: 1.5rem;
   }
 
   & .RowThree{
@@ -59,4 +62,22 @@ export const RowContainer = styled.div`
   & div p:nth-of-type(2){
 
   }
+`;
+
+export const ContentButton = styled.div`
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  margin-left: 1.5rem;
+
+  & :first-of-type{
+    margin-right: 1.5rem;
+  }
+
+  ${({ show }) =>
+    show &&
+    css`
+      opacity: 1;
+      max-height: 50px; 
+    `}
 `;

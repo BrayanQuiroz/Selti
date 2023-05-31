@@ -4,6 +4,8 @@ import styled from 'styled-components';
 
 const HeaderContainer = styled.header`
    background-color: #DC2626;
+   position: sticky;
+   top: 0;
 
    & div{
       max-width: 73rem;

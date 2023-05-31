@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, Row, RowFlex, RowContainer } from '../utils/Container';
+import React, { useState} from 'react';
+import { Container, Row, RowFlex, RowContainer,ContentButton } from '../utils/Container';
 import InputCustom from '../utils/InputsTwo';
 import Tables from '../utils/Tables';
 import Input from '../utils/Inputs';
@@ -8,6 +8,12 @@ import Button from '../utils/Buttons';
 import { Text }  from '../utils/Text';
 
 const Index = (props) => {
+
+   const [showContent, setShowContent] = useState(false)
+
+   const handleClickButton = () => { 
+      setShowContent(!showContent)
+   }
 
    const handleInputChange = (event) => {
 
@@ -23,8 +29,6 @@ const Index = (props) => {
       }
    ]
    
-
-   console.log(rows.nombre);
 
    const headers = ['Departmento', 'Provincia', 'Distrito', 'Producto', 'Hectareas']
 
@@ -68,8 +72,12 @@ const Index = (props) => {
                <CheckboxTwo text={ Text.TextOne} />
                <CheckboxTwo text={ Text.TextTwo} />
             </div>
-            <div>
-               <Button text='Descargar formato' />
+            <div className='rows'>
+               <Button text='Descargar formato' onClick={handleClickButton} />
+                  <ContentButton show={showContent ? 1 : 0}>
+                     <Button text='Subir archivo' />
+                     <Button text='Enviar archivo' />
+                  </ContentButton>
             </div>
          </Row>   
       </Container>
