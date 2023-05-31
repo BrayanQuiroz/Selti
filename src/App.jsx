@@ -5,15 +5,18 @@ import NavBar from './components/utils/NavBar'
 import StepTwo from './components/razonSocial/Index'
 import StepThree from './components/infoEmpresa/Index'
 import StepFour from './components/finalizado/Index'
+import StepConfirmacion from './components/confirmacion/Index'
 
 function App() {
 
   return (
     <>
       <Header />
-      <NavBar />
+      {/* <NavBar /> */}
+      {/* <Step /> */}
       {/* <StepThree /> */}
-      <StepFour />
+      {/* <StepFour /> */}
+      <StepConfirmacion />
       <Footer/>
     </>
   )

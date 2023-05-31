@@ -81,3 +81,11 @@ export const ContentButton = styled.div`
       max-height: 50px; 
     `}
 `;
+
+
+export const ContainerConfirmacion = styled.div`
+
+  width: 800px;
+  height: 700px;
+  background-color:white;
+`;
