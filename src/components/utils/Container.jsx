@@ -1,5 +1,12 @@
 import styled, { css } from 'styled-components';
 
+export const ContainerApp = styled.div`
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 export  const Container = styled.div`
   max-width: ${props => props.maxWidth || '72rem'}; 
   margin-left: auto;
@@ -11,7 +18,6 @@ export  const Container = styled.div`
 export const Row = styled.div`  
   padding: ${props => props.padding || '0rem'}; 
   background-color: white;
-  /* width: ${props => props.width || '100%'}; */
   height: calc(100% - 158.8px);
   & .RowTwo{
     width: 100%;
@@ -83,9 +89,3 @@ export const ContentButton = styled.div`
 `;
 
 
-export const ContainerConfirmacion = styled.div`
-
-  width: 800px;
-  height: 700px;
-  background-color:white;
-`;

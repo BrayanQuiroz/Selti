@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Footer = styled.footer`
-  position: relative;
-  bottom: 0;
+
    width: 100%; 
    background-color: #1f2937;
 

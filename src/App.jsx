@@ -6,11 +6,12 @@ import StepTwo from './components/razonSocial/Index'
 import StepThree from './components/infoEmpresa/Index'
 import StepFour from './components/finalizado/Index'
 import StepConfirmacion from './components/confirmacion/Index'
+import { ContainerApp} from './components/utils/Container'
 
 function App() {
 
   return (
-    <>
+    <ContainerApp>
       <Header />
       {/* <NavBar /> */}
       {/* <Step /> */}
@@ -18,7 +19,7 @@ function App() {
       {/* <StepFour /> */}
       <StepConfirmacion />
       <Footer/>
-    </>
+    </ContainerApp>
   )
 }
 
