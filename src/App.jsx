@@ -6,20 +6,30 @@ import StepTwo from './components/razonSocial/Index'
 import StepThree from './components/infoEmpresa/Index'
 import StepFour from './components/finalizado/Index'
 import StepConfirmacion from './components/confirmacion/Index'
-import { ContainerApp} from './components/utils/Container'
+import { ContainerApp } from './components/utils/Container'
+import React, {createContext,useState } from 'react'
+
+export const StepsContext = createContext();
 
 function App() {
 
+  const StepsProvides = ({ children }) => { 
+    
+    // const  
+  }
+
   return (
-    <ContainerApp>
+    <>
       <Header />
-      {/* <NavBar /> */}
-      {/* <Step /> */}
-      {/* <StepThree /> */}
-      {/* <StepFour /> */}
+    {/* <ContainerApp> */}
+      <NavBar />
+      <Step />
+      <StepThree />
+      <StepFour />
       <StepConfirmacion />
       <Footer/>
-    </ContainerApp>
+    {/* </ContainerApp> */}
+    </>
   )
 }
 
