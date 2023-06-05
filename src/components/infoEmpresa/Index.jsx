@@ -18,6 +18,8 @@ const Index = () => {
   const [modalIsOpen2, setModalIsOpen2] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedRows, setSelectedRows] = useState([]);
+
+ 
    
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
@@ -57,7 +59,7 @@ const Index = () => {
   };
 
   const [rows, setRows] = useState([]);
-  const [newRow, setNewRow] = useState({
+  const [newRow, setNewRow] = useState([{
     name: '',
     firstName: '',
     lastName: '',
@@ -66,7 +68,7 @@ const Index = () => {
     position: '',
     email: '',
     phone: '',
-  });
+  }]);
 
   const [rows2, setRows2] = useState([]);
   const [newRow2, setNewRow2] = useState({
@@ -115,6 +117,11 @@ const Index = () => {
     setSelectedRows([]);
   };
   
+  const [formData, setFormData] = useState({
+
+    ...newRow,...newRow2
+
+  })
  
 
   const handleAddClick = () => {
@@ -128,7 +135,7 @@ const Index = () => {
       newRow.phone.trim() !== ''
     ) {
       setRows([...rows, newRow]);
-      setNewRow({
+      setNewRow([{
 
         name: '',
         firstName: '',
@@ -138,7 +145,7 @@ const Index = () => {
         position: '',
         email: '',
         phone: '',
-      });
+      }]);
     } else {
       toast.error('Por favor, complete todos los campos obligatorios.');
     }
@@ -192,13 +199,13 @@ const Index = () => {
         checked={selectedRows.includes(index)}
         onChange={() => handleCheckboxChange(index)}
       />,
-      <Input name="name" value={row.name} onChange={handleInputChange} disabled />,
-      <Input name="firstName" value={row.firstName} onChange={handleInputChange} disabled />,
-      <Input name="lastName" value={row.lastName} onChange={handleInputChange} disabled />,
-      <Input name="documentType" value={row.documentType} onChange={handleInputChange} disabled />,
-      <Input name="position" value={row.position} onChange={handleInputChange} disabled />,
-      <Input name="email" value={row.email} onChange={handleInputChange} disabled />,
-      <Input name="phone" value={row.phone} onChange={handleInputChange} disabled />,
+      <span name="name">{row.name}</span>,
+      <span name="firstName">{row.firstName}</span>,
+      <span name="lastName">{row.lastName}</span>,
+      <span name="Porducto">{row.documentType}</span>,
+      <span name="position">{row.position}</span>,
+      <span name="email">{row.email}</span>,
+      <span name="phone">{row.phone}</span>,
     ]);
   }
 

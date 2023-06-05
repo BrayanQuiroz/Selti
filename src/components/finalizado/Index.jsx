@@ -1,15 +1,21 @@
-import React, { useState} from 'react';
+import React, { useContext, useState } from 'react';
 import { Container, Row, RowFlex, RowContainer,ContentButton } from '../utils/Container';
 import InputCustom from '../utils/InputsTwo';
 import Tables from '../utils/Tables';
 import Input from '../utils/Inputs';
 import CheckboxTwo from '../utils/CheckboxTwo'; 
 import Button from '../utils/Buttons';
-import { Text }  from '../utils/Text';
+import { Text } from '../utils/Text';
+import { useNavigate } from "react-router-dom";
+import { AppContext } from '../Context/Context';
 
 const Index = (props) => {
 
+   const {step1Data,step2Data, step3Data } = useContext(AppContext)
+
    const [showContent, setShowContent] = useState(false)
+
+
 
    const handleClickButton = () => { 
       setShowContent(!showContent)
@@ -76,13 +82,17 @@ const Index = (props) => {
    return (
       <Container>
          <Row padding="2rem">
-            <p>REPRESENTANTE LEGAL</p>
+            <p>REPRESENTANTE LEGAL</p>      
+
+                  <RowContainer >
+                     <InputCustom label='Tipo de documento:' width='97%' />
+                  <InputCustom value={step1Data.numerodocumento} label='Número de documento:' width='100%' />
+
+                </RowContainer>            
             <RowContainer>
-               <InputCustom label='Tipo de documento:' width='97%' />
-               <InputCustom label='Número de documento:' width='100%' />
-            </RowContainer>
-            <RowContainer>
-               <InputCustom label='Apellidos y Nombres:' />
+               <InputCustom width='97%' label='Nombre:'value={step1Data.nombre}  />
+               <InputCustom width='97%' label='Apellido Paterno:' value={step1Data.apellidopaterno} />
+               <InputCustom  width='100%' label='Apellido Materno:' value={step1Data.apellidomaterno}  />
             </RowContainer>
             <p>Razón social</p>
             <RowContainer>
