@@ -7,29 +7,27 @@ import StepThree from './components/infoEmpresa/Index'
 import StepFour from './components/finalizado/Index'
 import StepConfirmacion from './components/confirmacion/Index'
 import { ContainerApp } from './components/utils/Container'
-import React, {createContext,useState } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AppProvider } from './components/Context/Context';
 
-export const StepsContext = createContext();
+
 
 function App() {
 
-  const StepsProvides = ({ children }) => { 
-    
-    // const  
-  }
-
   return (
-    <>
+    <Router>
       <Header />
-    {/* <ContainerApp> */}
       <NavBar />
-      <Step />
-      <StepThree />
-      <StepFour />
-      <StepConfirmacion />
+      <AppProvider>
+        <Routes>
+        <Route path="/" exact element={<Step/>} />
+          <Route path="/razonsocial" exact element={<StepTwo/>} />
+          <Route path="/infoEmpresa" element={<StepThree />} />
+          <Route path="/finalizado" element={<StepFour /> } />
+        </Routes>
+      </AppProvider>
       <Footer/>
-    {/* </ContainerApp> */}
-    </>
+    </Router>
   )
 }
 

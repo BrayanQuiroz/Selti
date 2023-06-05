@@ -21,27 +21,55 @@ const Index = (props) => {
 
    const rows =[
       {
-         Departamento: 'Huanuco',
+         Departamento: 'Huánuco',
          Provincia: 'Lima',
          Distrito: 'Jesus Maria',
          Producto: 'Cafe',
          Hectareas: '20',
       }
    ]
+
+   const rows2 =[
+      {
+         nombre: 'Brayan',
+         apellidoP: 'Quiroz',
+         apellidoM: 'Chuquiyauri',
+         tipodoc: 'Documento de Identidad',
+         numerodoc: '72516991',
+         cargo: 'Gerente',
+         celular:'962449636'
+      }
+   ]
    
 
    const headers = ['Departmento', 'Provincia', 'Distrito', 'Producto', 'Hectareas']
+   const headers2 = ['Nombres', 'Apellido Paterno', 'Apellido Materno', 'Tipo de Documento', 'Nro. de Documento','Cargo','Celular']
 
+
+      
+   let data2 = [];
+
+   if (rows2.length > 0) {
+      data2 = rows2.map((row) => [         
+         <span name="name">{row.nombre}</span>,
+         <span name="name">{row.apellidoP}</span>,
+         <span name="name">{row.apellidoM}</span>,
+         <span name="name">{row.tipodoc}</span>,
+         <span name="name">{row.numerodoc}</span>,
+         <span name="name">{row.cargo}</span>,
+         <span name="name">{row.celular}</span>,
+      ]);
+   }
    
    let data = [];
 
    if (rows.length > 0) {
-      data = rows.map((row) => [         
-         <Input width='50%' name="name" value={row.Departamento} onChange={handleInputChange} disabled/>,
-         <Input width='50%' name="name" value={row.Provincia} onChange={handleInputChange} disabled />,
-         <Input width='50%' name="name" value={row.Distrito} onChange={handleInputChange} disabled />,
-         <Input width='50%' name="name" value={row.Producto} onChange={handleInputChange} disabled />,
-         <Input width='50%' name="name" value={row.Hectareas} onChange={handleInputChange} disabled/>,         
+      data = rows.map((row) => [               
+         <span name="name">{row.Departamento}</span>,
+         <span name="name">{row.Provincia}</span>,
+         <span name="name">{row.Distrito}</span>,
+         <span name="name">{row.Producto}</span>,
+         <span name="name">{row.Hectareas}</span>,
       ]);
    }
    
@@ -66,7 +94,9 @@ const Index = (props) => {
                <InputCustom label='Provincia'width='97%' />
                <InputCustom label='Distrito:'width='100%'/>
             </RowContainer>
-            <p>PERSONAS DE CONTACTO / PUNTO(S) FOCAL(ES)</p>
+            <p>REPRESENTANTE(S) LEGAL/PERSONA(S) DE CONTACTO</p>
+            <Tables headers={headers2} data={data2} />
+            <p>UBICACION DE UNIDADES PRODUCTIVAS</p>
             <Tables headers={headers} data={data} />
             <div>
                <CheckboxTwo text={ Text.TextOne} />

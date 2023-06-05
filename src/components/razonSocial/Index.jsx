@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import InputsText from '../utils/Inputs';
 import { Container, Row, RowFlex,RowContainer } from '../utils/Container';
 import SelectCustom from '../utils/Selects';
 import Button from '../utils/Buttons';
 import CheckboxWithLabel from '../utils/Checkbox';
+import { useNavigate } from "react-router-dom";
+import { AppContext } from '../Context/Context';
 
 const index = (props) => {
    
    const [selectedOption, setSelectedOption] = useState('');
 
    const handleSelectChange = (event) => {
-     setSelectedOption(event.target.value);
+      setSelectedOption(event.target.value);
+      
    };
    const options = [
    
@@ -26,6 +29,59 @@ const index = (props) => {
       { value: '26', label: 'Empresa Individual de Responsabilidad Limitada (E.I.R.L.)' },
       { value: '27', label: 'Sociedad Anónima Abierta (S.A.A.)' },
    ];
+
+   const { step2Data, setStep2Data } = useContext(AppContext);
+
+   const [formData, setFormData] = useState({
+      ruc:'',
+     razonsocial: '',
+     departamento: '',
+     provincia: '',
+     distrito: '',
+     direccion: '',
+     correoElectronico: '',
+      web: '',
+      celular: '',
+      telefono: '',
+     tamanoEmpresa: '',
+     tipoEmpresa: '',
+     cantidadTrabajadores: '',
+     paisExporta: '',
+     certificadoCompra: '',
+     certificadoInfantil: '',
+   });
+   const handleChange = (e) => {
+      const { name, value } = e.target;
+    
+      // if (name === 'tipodocumento') {
+      //   const selectedOption = options.find((option) => option.value === value);
+    
+      //   setFormData((prevFormData) => ({
+      //     ...prevFormData,
+      //     [name]: selectedOption,
+      //   }));
+      // } else {
+      //   setFormData((prevFormData) => ({
+      //     ...prevFormData,
+      //     [name]: value,
+      //   }));
+      // }
+
+      setFormData((prevFormData) => ({
+         ...prevFormData,
+         [name]: value,
+       }));
+    
+      // Agrega aquí el código para actualizar los valores en el contexto
+    };
+
+   const history = useNavigate();
+   const handleSubmitNext = (e) => {
+      e.preventDefault();
+      setStep2Data(formData);
+      history('/infoEmpresa');
+     
+    };
    
    const optionsEmpresa = [
       
@@ -40,76 +96,119 @@ const index = (props) => {
          <Row padding='2rem'>
             <RowContainer>
             <RowFlex>   
-               <InputsText label="RUC:*" type="text"
+                  <InputsText
+                     label="RUC:*" type="text"
+                     name="ruc"
+                     onChange={handleChange}
+                     value={formData.ruc}
                   placeholder="Ingrese número de documento"
                   options={options} /> 
                <Button isRounded={true} isMarginTop={true}
                        text="Buscar" />
                </RowFlex> 
                <RowFlex>
-                  <InputsText label="Razón social:*" type="text"
+                  <InputsText
+                     name="razonsocial"
+                     value={formData.razonsocial}
+                     label="Razón social:*" type="text"
+                      onChange={ handleChange}
                      options={options}/>      
                </RowFlex>
             </RowContainer>
             <RowContainer> 
-               <InputsText width="95%" label="Departamento:*"type="text"
+               <InputsText
+                  width="95%"
+                  name="departamento"
+                  value={formData.departamento}
+                  onChange={handleChange}
+                  label="Departamento:*" type="text"
                   options={options} />
                
-               <InputsText width="95%" label="Provincia:*" type="text"
-                           options={options} />
+               <InputsText
+                  width="95%"
+                  onChange={handleChange}
+                  name="provincia"
+                  value={formData.provincia}
+                  label="Provincia:*"
+                  type="text"
+                  options={options} />
                
-               <InputsText width="95%" label="Distrito:*" type="text"
+               <InputsText
+                  width="95%"
+                  name="distrito"
+                  value={formData.distrito}
+                  onChange={handleChange}
+                  label="Distrito:*"
+                  type="text"
                            options={options} />
             </RowContainer>
             <RowContainer>
-               <SelectCustom
+               {/* <SelectCustom
                   width="95%"
                   label="Codigo de departamento*"
+                  name="tipodocumento"
                   options={options}
-                  value={selectedOption}
-                  onChange={handleSelectChange} />
+                  // value={formData.}
+                  onChange={handleSelectChange} /> */}
                <InputsText       
                   width="95%"   
+                  name="telefono"
                   label="Telefono:*"
                   type="text"
+                  onChange={handleChange}
+                  value={formData.telefono}
                   options={options} />
                <InputsText       
-                   width="95%"   
+                  width="95%"   
+                  name="celular"
                   label="Celular:*"
                   type="text"
+                  onChange={handleChange}
+                  value={formData.celular}
                   options={options} />
             </RowContainer>
             <RowContainer>
                <InputsText       
-                     width="100%"   
-                     label="Dirección exacta:*"
-                     type="text"
-                     options={options} />
+                  width="100%"   
+                  name="direccion"
+                  value={formData.direccion}
+                  label="Dirección exacta:*"
+                  onChange={handleChange}
+                  type="text"
+                  options={options} />
             </RowContainer>
             <RowContainer>
             <InputsText       
                   width="95%"   
+                  name="correoElectronico"
                   label="Correo electronico:*"
+                  value={formData.correoElectronico}
                   type="text"
+                  onChange={handleChange}
                   options={options} />
                <InputsText       
                   width="95%"   
+                  name="web"
                   label="Pagina web:*"
+                  value={formData.web}
                   type="text"
+                  onChange={handleChange}
                   options={options} />
             </RowContainer>
             <RowContainer>
                <SelectCustom
-                     width="95%"
+                  width="95%"
+                  name="tamanoEmpresa"
                      label="Indique tamaño de empresa: *"
                      options={optionsEmpresa}
-                     value={selectedOption}
+                     value={formData.tamanoEmpresa}
                      onChange={handleSelectChange} />               
                <SelectCustom
-                     width="95%"
+                  width="95%"
+                  name="tipoEmpresa"
                      label="Indique tipo de empresa: *"
                      options={optionsEmpresaTipo}
-                     value={selectedOption}
+                     value={formData.tipoEmpresa}
                      onChange={handleSelectChange} />
             </RowContainer>
             <RowContainer>
@@ -117,10 +216,12 @@ const index = (props) => {
                <CheckboxWithLabel label="Si cuenta con certificaciones sociales que incluyan también la materia en trabajo infantil. Mencione cual(es) *" />
             </RowContainer>
             <RowContainer>
-               <p>*Campo de llenado obligatorio</p>
-               <Button               
+                  <p>*Campo de llenado obligatorio</p>
+                  <Button            
+                     type="submit"
+                     onClick={handleSubmitNext}
                      text="Siguiente"/>
-            </RowContainer>
+            </RowContainer>    
          </Row>
       </Container>
    );
