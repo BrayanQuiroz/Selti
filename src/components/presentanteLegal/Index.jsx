@@ -16,7 +16,7 @@ const index = (props) => {
       nombre: step1Data.nombre || '',
       apellidopaterno: step1Data.apellidopaterno || '',
       apellidomaterno: step1Data.apellidomaterno || '',
-      // tipodocumento: step1Data.tipodocumento || '',
+      tipodocumento: step1Data.tipodocumento || '',
       numerodocumento: step1Data.numerodocumento || '',
       cargo: step1Data.cargo || '',
       correoElectronico: step1Data.correoElectronico || '',
@@ -34,20 +34,7 @@ const index = (props) => {
 
    const handleChange = (e) => {
       const { name, value } = e.target;
-    
-      // if (name === 'tipodocumento') {
-      //   const selectedOption = options.find((option) => option.value === value);
-    
-      //   setFormData((prevFormData) => ({
-      //     ...prevFormData,
-      //     [name]: selectedOption,
-      //   }));
-      // } else {
-      //   setFormData((prevFormData) => ({
-      //     ...prevFormData,
-      //     [name]: value,
-      //   }));
-      // }
+
 
       setFormData((prevFormData) => ({
          ...prevFormData,
