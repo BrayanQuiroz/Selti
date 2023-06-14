@@ -40,10 +40,10 @@ const Label = styled.label`
 const InputCustom = ({ label, options, value, onChange,width }) => (
   <SelectWrapper width={width} >
     <Label>{label}</Label>
-    <Select value={value} onChange={onChange}>
-      {options.map(option => (
-        <option key={option.value} value={option.value}>
-          {option.label}
+    <Select  key={value} value={value} onChange={onChange}>
+    {options.map((option, index) => (
+        <option key={option.codigo} value={option.codigo}>
+          {option.descripcion}
         </option>
       ))}
     </Select>
@@ -54,10 +54,14 @@ InputCustom.propTypes = {
   label: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.any.isRequired,
-      label: PropTypes.string.isRequired,
+      codigo: PropTypes.string.isRequired,
+      descripcion: PropTypes.string.isRequired,
     })
-  ),
+  ).isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  width: PropTypes.string,
 };
+
 
 export default InputCustom;

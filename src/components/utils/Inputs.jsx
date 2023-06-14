@@ -36,12 +36,12 @@ const InputWrapper = styled.div`
   width: ${props => props.width || '100%'}; 
 `;
 
-const InputCustom = ({ label,...props }) => (
-   <InputWrapper>
-      <Label>{label}</Label>
-      <Inputs {...props} />
-   </InputWrapper>
- );
+const InputCustom = ({ label, isDisabled, ...props }) => (
+  <InputWrapper>
+    <Label>{label}</Label>
+    <Inputs {...props} disabled={isDisabled} />
+  </InputWrapper>
+);
  
  InputCustom.propTypes = {
   //  label: PropTypes.string.isRequired,

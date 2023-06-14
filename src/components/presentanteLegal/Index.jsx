@@ -1,11 +1,11 @@
-import React, { useState,useContext } from 'react';
+import React, { useState,useContext, useEffect } from 'react';
 import InputsText from '../utils/Inputs';
 import { Container, Row, RowFlex,RowContainer } from '../utils/Container';
 import Button from '../utils/Buttons';
 import SelectCustom from '../utils/Selects';
 import { AppContext } from '../Context/Context';
 import { useNavigate } from "react-router-dom";
-
+import axios from 'axios'
 
 const index = (props) => {
 
@@ -40,37 +40,78 @@ const index = (props) => {
          ...prevFormData,
          [name]: value,
        }));
-    
-      // Agrega aquí el código para actualizar los valores en el contexto
     };
     
-    
-   const options = [
-      { value: '03', label: 'DOCUMENTO DE IDENTIDAD' },
-      { value: '06', label: 'CARNET DE EXTRANJERÍA' },
-      { value: '26', label: 'CARNET DE PERMISO TEMPORAL DE PERMANENCIA' },
-      
-   ];
+   //Consumir API de Tipo de Documento
 
-   const handleBuscar = (e) => {
-      e.preventDefault();
-      // Aquí puedes colocar el código que deseas ejecutar al hacer clic en el botón "Buscar"
-      // Buscar();
-    };
+   const [selectOptions, setSelectOptions] = useState([]);
    
-   console.log(step1Data)
+   useEffect(() => {
+      const fetchData = async () => { 
+         try {
+            const response = await axios.get('http://127.0.0.1:8000/apitipodocumento/');
+            setSelectOptions(response.data);
+            console.log(selectOptions)
+
+         } catch (error) {
+            console.error('Error al obtener las opciones:', error);
+          }
+
+      }
+      fetchData();
+   }, [])
+
+
+   
+   const handleBuscar = async (e) => {
+      e.preventDefault();
+    
+      const { tipodocumento, numerodocumento } = formData;
+    
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/apidocumento/${tipodocumento}/${numerodocumento}/`);
+        console.log(response.data);
+    
+        const { apellidoMaterno, apellidoPaterno, nombres } = response.data;
+    
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          apellidomaterno: apellidoMaterno || '',
+          apellidopaterno: apellidoPaterno || '',
+          nombre: nombres || '',
+        }));
+    
+        setStep1Data((prevStep1Data) => ({
+          ...prevStep1Data,
+          apellidomaterno: apellidoMaterno || '',
+          apellidopaterno: apellidoPaterno || '',
+          nombre: nombres || '',
+        }));
+      } catch (error) {
+        console.error('Error al obtener los datos:', error);
+      }
+    };
+    
 
    return (
       <Container>
          <Row padding='2rem'>
          <form onSubmit={handleSubmitNext} >
             <RowContainer>
-               <SelectCustom
+               <select
                   label="Tipo de documento*"
-                  options={options}
                   name="tipodocumento"
                   value={formData.tipodocumento}
-                  onChange={handleChange} />
+                  onChange={handleChange}
+                  >
+                  <option value="">Seleccione tipo de documento</option>
+                  {selectOptions.map((option) => (
+                     <option key={option.codigo} value={option.codigo}>
+                        {option.descripcion}
+                     </option>
+                  ))}
+               </select>
+
                <RowFlex>
                   <InputsText        
                      isRounded={true}   
@@ -80,12 +121,12 @@ const index = (props) => {
                      value={formData.numerodocumento}
                      onChange={handleChange} 
                      placeholder="Ingrese número de documento"
-                     options={options} />      
+                      />      
                   <Button
-                     isRounded={true}
-                        isMarginTop={true}
-                        onClick={handleBuscar}
-                        type="submit"
+                     isDisabled={true}
+                     isMarginTop={true}
+                     onClick={handleBuscar}
+                     type="submit"
                      text="Buscar"/>
                   </RowFlex>     
                </RowContainer>
@@ -94,17 +135,20 @@ const index = (props) => {
                      width="95%"
                      label="Nombre:*"
                      name="nombre"
+                     isDisabled={true}
                      value={formData.nombre}
                      onChange={handleChange} 
                      type="text"/>
                   <InputsText     
                      width="95%"  
+                     isDisabled={true}
                      name="apellidopaterno"
                      value={formData.apellidopaterno}
                      onChange={handleChange} 
                      label="Apellido Paterno:*"
                         type="text" />
                   <InputsText      
+                     isDisabled={true}
                      value={formData.apellidomaterno}
                      onChange={handleChange} 
                      name="apellidomaterno"
