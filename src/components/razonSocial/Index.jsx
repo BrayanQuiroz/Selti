@@ -17,17 +17,34 @@ const index = (props) => {
       
    };
 
-   const [selectOptions, setSelectOptions] = useState([]);
+   const [OptionsTamano, setOptionsTamano] = useState([]);
 
    useEffect(() => {
-      const fetchData = async () => { 
+      const fetchData = async () => {
          try {
-            const response = await axios.get('');
+            const response = await axios.get('http://127.0.0.1:8000/apitamanoempresa/');
+            setOptionsTamano(response.data)
          } catch (error) {
             console.error('Error al obtener las opciones:', error);
-          }
+         }
       }
-    })
+      fetchData();
+   }, [])
+   
+   
+   const [OptionsTipo, setOptionsTipo] = useState([]);
+
+   useEffect(() => {
+      const fetchData = async () => {
+         try {
+            const response = await axios.get('http://127.0.0.1:8000/apitipocontribuyente/');
+            setOptionsTipo(response.data)
+         } catch (error) {
+            console.error('Error al obtener las opciones:', error);
+         }
+      }
+      fetchData();
+   },[])
 
    const { step2Data, setStep2Data } = useContext(AppContext);
 
@@ -61,6 +78,7 @@ const index = (props) => {
     };
 
    const history = useNavigate();
+
    const handleSubmitNext = (e) => {
       e.preventDefault();
       setStep2Data(formData);
@@ -68,10 +86,6 @@ const index = (props) => {
      
     };
    
-   const options = []
-   
-   const optionsEmpresa = [];   
-   const optionsEmpresaTipo = []
 
    const handleBuscar = async (e) => {
       e.preventDefault();
@@ -115,8 +129,7 @@ const index = (props) => {
                      name="ruc"
                      onChange={handleChange}
                      value={formData.ruc}
-                  placeholder="Ingrese número de documento"
-                  options={options} /> 
+                  placeholder="Ingrese número de documento"/> 
                   <Button
                      isRounded={true}
                      isMarginTop={true}
@@ -130,8 +143,7 @@ const index = (props) => {
                      name="razonsocial"
                      value={formData.razonsocial}
                      label="Razón social:*" type="text"
-                      onChange={ handleChange}
-                     options={options}/>      
+                      onChange={ handleChange}/>      
                </RowFlex>
             </RowContainer>
             <RowContainer> 
@@ -182,8 +194,7 @@ const index = (props) => {
                   label="Celular:*"
                   type="text"
                   onChange={handleChange}
-                  value={formData.celular}
-                  options={options} />
+                  value={formData.celular}/>
             </RowContainer>
             <RowContainer>
                <InputsText       
@@ -192,8 +203,7 @@ const index = (props) => {
                   value={formData.direccion}
                   label="Dirección exacta:*"
                   onChange={handleChange}
-                  type="text"
-                  options={options} />
+                  type="text"/>
             </RowContainer>
             <RowContainer>
             <InputsText       
@@ -202,32 +212,42 @@ const index = (props) => {
                   label="Correo electronico:*"
                   value={formData.correoElectronico}
                   type="text"
-                  onChange={handleChange}
-                  options={options} />
+                  onChange={handleChange}/>
                <InputsText       
                   width="95%"   
                   name="web"
                   label="Pagina web:*"
                   value={formData.web}
                   type="text"
-                  onChange={handleChange}
-                  options={options} />
+                  onChange={handleChange}/>
             </RowContainer>
             <RowContainer>
-               <SelectCustom
-                  width="95%"
-                  name="tamanoEmpresa"
+               <select
                      label="Indique tamaño de empresa: *"
-                     options={optionsEmpresa}
+                     name="tamanoEmpresa"
                      value={formData.tamanoEmpresa}
-                     onChange={handleSelectChange} />               
-               <SelectCustom
-                  width="95%"
-                  name="tipoEmpresa"
+                     onChange={handleChange}
+                     >
+                     <option value="">Seleccione tamaño de empresa</option>
+                     {OptionsTamano.map((option) => (
+                        <option key={option.codigo} value={option.codigo}>
+                           {option.descripcion}
+                        </option>
+                     ))}
+                  </select>
+               <select
                      label="Indique tipo de empresa: *"
-                     options={optionsEmpresaTipo}
+                     name="tipoEmpresa"
                      value={formData.tipoEmpresa}
-                     onChange={handleSelectChange} />
+                     onChange={handleChange}
+                     >
+                     <option value="">Seleccione tipo de empresa</option>
+                     {OptionsTipo.map((option) => (
+                        <option key={option.codigo} value={option.codigo}>
+                           {option.tipoContri}
+                        </option>
+                     ))}
+                  </select>
             </RowContainer>
             <RowContainer>
                <CheckboxWithLabel label="Si sus clientes les exigen algún sistema de cumplimiento social y/o certificación para la compra, mencione cual(es) *" />
